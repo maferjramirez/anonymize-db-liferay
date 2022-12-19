@@ -5,8 +5,6 @@
 DECLARE CURSOR
 all_my_tables IS SELECT table_name FROM SYS.USER_TAB_COLUMNS utc WHERE COLUMN_NAME LIKE 'USERNAME'
 order by TABLE_NAME;
-varchar_count integer;
-l_max number;
 BEGIN
 	FOR my_list IN all_my_tables LOOP
 		 execute IMMEDIATE 'UPDATE ' || my_list.table_name || ' SET username = :1' USING 'Test';
